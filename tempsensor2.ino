@@ -3,7 +3,7 @@
 #include <DallasTemperature.h>
 #include <time.h>
 
-#define myPeriodic 3 //in sec | Thingspeak pub is 15sec
+#define myPeriodic 60 //in sec | Thingspeak pub is 15sec
 #define ONE_WIRE_BUS 2  // DS18B20 on arduino pin2 corresponds to D4 on physical board
 
 OneWire oneWire(ONE_WIRE_BUS);

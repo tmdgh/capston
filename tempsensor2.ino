@@ -2,6 +2,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <time.h>
+#include "mypwd.h"
 
 #define myPeriodic 60 //in sec | Thingspeak pub is 15sec
 #define ONE_WIRE_BUS 2  // DS18B20 on arduino pin2 corresponds to D4 on physical board
@@ -11,11 +12,10 @@ DallasTemperature DS18B20(&oneWire);
 float prevTemp = 0;
 const char* server = "api.thingspeak.com";
 
-const char* aws_server = "ec2-52-12-68-77.us-west-2.compute.amazonaws.com";
+const char* aws_server = "ec2-18-222-173-200.us-east-2.compute.amazonaws.com";
 
-String apiKey ="8KOT9BRJ2G6B2S34";
-const char* MY_SSID = "SK_WiFiGIGAA360"; 
-const char* MY_PWD = "1809085034";
+const char* MY_SSID = "SK_WiFi9D52"; 
+
 int sent = 0;
 void setup() {
   Serial.begin(115200);
@@ -107,11 +107,11 @@ void sendAWS(float temp)
    time_t now=time(nullptr);
    String postStr="/log?temp=";
    postStr += String(temp);
-   postStr += "&time_t=";
-   postStr += String(now);
+   //postStr += "&time_t=";
+   //postStr += String(now);
    Serial.println(postStr);
    client.print("GET " + postStr + "\n");
-   client.print("Host: ec2-52-12-68-77.us-west-2.compute.amazonaws.com:9000\n");
+   client.print("Host: ec2-18-222-173-200.us-west-2.compute.amazonaws.com:9000\n");
    client.print("Connection: close\r\n\r\n\n");
    delay(1000);
    
